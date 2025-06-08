@@ -14,7 +14,7 @@ Automatically mines ores in Skyblock using AOTV teleportation.
    - Route Color: Visual preference for route display
    - Overlay: Toggle information display
    - Ticks settings: Adjust mining speed
-   - Fast AOTV: Faster teleportation (may be less stable)
+   - Fast AOTV: Faster teleportation using packet
    - Rod Swap Ability: Use fishing rod for ability
 
 **Usage:**
