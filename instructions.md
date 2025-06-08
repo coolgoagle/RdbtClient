@@ -23,6 +23,12 @@ Automatically mines ores in Skyblock using AOTV teleportation.
 - The macro will follow your custom route and mine ores
 - It will automatically handle teleportation between waypoints
 
+**Commands:**
+
+- `/oreadd`: Add a point to your route
+- `/oreremove`: Remove a point
+- `/oreclear`: Clear your route
+
 ### Gemstone Macro
 Automatically mines gemstones in the Crystal Hollows.
 
@@ -41,6 +47,12 @@ Automatically mines gemstones in the Crystal Hollows.
 - Press the keybind to start/stop the macro
 - The macro will follow your route and mine selected gemstones
 - It will handle mob encounters if enabled
+
+**Commands:**
+
+- `/gemstoneadd`: Add a point to your route
+- `/gemstoneremove`: Remove a point
+- `/gemstoneclear`: Clear your route
 
 ### Commission Macro
 Automatically completes Dwarven Mines commissions.
@@ -116,18 +128,10 @@ Automates the Chocolate Factory event.
 - Press the keybind to start/stop the macro
 - The macro will automatically interact with the Chocolate Factory
 
-### ScathaMacro
+### ScathaMacro (VIP)
 VIP ONLY
 
 ## QOL Features
-
-### AutoReconnect
-Automatically reconnects to Skyblock locations.
-
-**Usage:**
-
-- Used by macros to handle disconnections
-- Supports various locations (Hub, Mines, Forge, Crystal Hollows, etc.)
 
 ### GhostBlocks
 Creates temporary air blocks
@@ -230,10 +234,8 @@ Automates fishing XP gain methods.
 - Toggle in settings menu
 - Automatically fills chum buckets or opens cans of worms
 
-### GrottoFinder
+### GrottoFinder (VIP) (BROKEN)
 Highlights fairy grottos in the Crystal Hollows.
-
-**Note:** Currently not fully functional
 
 ### LobbyHopper
 Automatically hops between lobbies to find one with a specific day.
@@ -293,18 +295,6 @@ Makes your player model spin client-side.
 
 - Toggle in settings menu
 - Visual effect only visible to you
-
-### Freecam
-Detaches camera from player
-
-**Setup:**
-
-1. Configure settings:
-   - Speed: Camera movement speed
-   - No Clip: Move through blocks
-   - Fly Mode: Enable flying
-
-**Usage:**
 
 - Use keybind to toggle
 - Move camera independently from player position
