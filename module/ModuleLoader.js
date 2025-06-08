@@ -88,7 +88,7 @@ global.settingSelection.getKeyBind = (Description, Location, module) => {
   }
 }
 
-const safe_module_url = "https://gist.githubusercontent.com/rdbtCVS/7ef84cd444a07efe5f3794e6f96003d1/raw"
+const safe_module_url = "https://gist.githubusercontent.com/rdbtCVS/abea81fae691ce5a07924d2bb3e85ff9/raw"
 
 let safe_modules = []
 

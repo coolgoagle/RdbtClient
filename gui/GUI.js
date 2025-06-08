@@ -21,7 +21,7 @@ const GUI = () => {
 
   const FolderName = "RdbtConfigV4"
 
-  const banning_module_url = "https://gist.githubusercontent.com/rdbtCVS/7ef84cd444a07efe5f3794e6f96003d1/raw"
+  const banning_module_url = "https://gist.githubusercontent.com/rdbtCVS/abea81fae691ce5a07924d2bb3e85ff9/raw"
 
   const ASSETS = "config/ChatTriggers/modules/RdbtClient/assets"
 
