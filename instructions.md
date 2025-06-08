@@ -48,7 +48,7 @@ Automatically completes Dwarven Mines commissions.
 **Setup:**
 
 1. Configure Weapon Slot for Goblin commissions
-2. Toggle Pigeonless mode if you don't have an etherwarp item
+2. Toggle Pigeonless mode
 
 **Usage:**
 
