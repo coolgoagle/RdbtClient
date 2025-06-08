@@ -117,7 +117,7 @@ Automates the Chocolate Factory event.
 - The macro will automatically interact with the Chocolate Factory
 
 ### ScathaMacro
-VIP-only feature (no details available).
+VIP ONLY
 
 ## QOL Features
 
@@ -130,7 +130,7 @@ Automatically reconnects to Skyblock locations.
 - Supports various locations (Hub, Mines, Forge, Crystal Hollows, etc.)
 
 ### GhostBlocks
-Creates temporary air blocks for easier navigation.
+Creates temporary air blocks
 
 **Setup:**
 
@@ -141,7 +141,7 @@ Creates temporary air blocks for easier navigation.
 **Usage:**
 
 - Press the keybind to create ghost blocks at your crosshair
-- Useful for navigating through tight spaces
+- Useful for dungeons
 
 ### ESP
 Highlights entities through walls.
@@ -168,7 +168,7 @@ Tracks Mithril powder gains.
 - Shows powder gained and hourly rate in chat
 
 ### AutoBeg
-Automatically sends begging messages in chat.
+Automatically sends begging messages in chat to get rank.
 
 **Setup:**
 
@@ -180,7 +180,7 @@ Automatically sends begging messages in chat.
 - Automatically sends randomized begging messages in chat
 
 ### AutoEnchanting
-Completes the enchanting table minigame automatically.
+Completes autopairs and addons automatically.
 
 **Setup:**
 
@@ -192,10 +192,10 @@ Completes the enchanting table minigame automatically.
 **Usage:**
 
 - Toggle in settings menu
-- Open enchanting table and let it complete the minigame
+- Open experiment table
 
 ### AutoHarp
-Automatically plays the melody harp minigame.
+Automatically plays the melody harp.
 
 **Setup:**
 
@@ -204,7 +204,7 @@ Automatically plays the melody harp minigame.
 **Usage:**
 
 - Toggle in settings menu
-- Open the harp minigame and it will play automatically
+- Open the harp and it will play automatically
 
 ### FastPlace
 Increases block placement speed.
@@ -295,7 +295,7 @@ Makes your player model spin client-side.
 - Visual effect only visible to you
 
 ### Freecam
-Detaches camera from player for exploration.
+Detaches camera from player
 
 **Setup:**
 
@@ -308,4 +308,4 @@ Detaches camera from player for exploration.
 
 - Use keybind to toggle
 - Move camera independently from player position
-- Useful for scouting areas or taking screenshots
+- Useful for finding things
