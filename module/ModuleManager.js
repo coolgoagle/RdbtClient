@@ -120,6 +120,7 @@ class ModuleManagerClass {
     }
 
     this.objectArray = newJson
+    FileLib.write("RdbtConfigV4", "rdbtconfig.json", JSON.stringify(newJson, null, 2))
   }
 
   saveSettings() {
@@ -141,6 +142,7 @@ class ModuleManagerClass {
       }
     }
     this.objectArray = newJson
+    FileLib.write("RdbtConfigV4", "rdbtconfig.json", JSON.stringify(newJson, null, 2))
   }
 
   getSetting(ModuleName, SettingName) {

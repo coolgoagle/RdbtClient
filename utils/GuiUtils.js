@@ -21,6 +21,15 @@ class GuiUtils {
     this.DropShadowColour = new java.awt.Color(this.theme.colours["accent"])
   }
 
+  /**
+   * Draws a rounded rectangle using Essential's UIRoundedRectangle
+   * @param {java.awt.Color} colour - The color to fill the rectangle with
+   * @param {number} x - The x coordinate of the top-left corner
+   * @param {number} y - The y coordinate of the top-left corner
+   * @param {number} width - The width of the rectangle
+   * @param {number} height - The height of the rectangle
+   * @param {number} radius - The corner radius of the rectangle
+   */
   DrawRoundedRect = (colour, x, y, width, height, radius) => {
     const matrix = Java.type("gg.essential.universal.UMatrixStack").Compat.INSTANCE
 
@@ -33,6 +42,17 @@ class GuiUtils {
     return new java.awt.Color(this.theme.colours[key])
   }
 
+  /**
+   * Draws a drop shadow effect using rounded rectangles
+   * @param {number} loops - Number of shadow layers to draw
+   * @param {number} x - The x coordinate of the shadow
+   * @param {number} y - The y coordinate of the shadow
+   * @param {number} width - The width of the shadow
+   * @param {number} height - The height of the shadow
+   * @param {number} opacity - The base opacity of the shadow
+   * @param {number} edgeRadius - The corner radius of the shadow
+   * @param {java.awt.Color} [clr=this.DropShadowColour] - The color of the shadow
+   */
   DropShadow = (loops, x, y, width, height, opacity, edgeRadius, clr = this.DropShadowColour) => {
     let r = clr.getRed() / 255
     let g = clr.getGreen() / 255

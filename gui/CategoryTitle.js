@@ -28,27 +28,39 @@ global.export.CategoryTitle = class {
     this.x = x
     this.y = y
     this.height = h
+    this.width = h
+    this.currentMouseX = MouseX
+    this.currentMouseY = MouseY
 
     this.CheckMouseOver(MouseX, MouseY)
 
-    if (this.selected) {
-      let barWidth = Math.min(this.Ease((Date.now() - this.interractTimestamp) / 250) * this.GetWidth(), this.GetWidth())
-      GuiUtils.DrawRoundedRect(this.colours.accent, this.x + this.GetWidth() / 2 - barWidth / 2, this.y + this.height - 1, barWidth, 1, 1)
-    } else {
-      let barWidth = this.GetWidth() - Math.min(this.Ease((Date.now() - this.interractTimestamp) / 250) * this.GetWidth(), this.GetWidth())
-      GuiUtils.DrawRoundedRect(this.colours.accent, this.x + this.GetWidth() / 2 - barWidth / 2, this.y + this.height - 1, barWidth, 1, 1)
-    }
+    // if (this.selected) {
+    //  let barWidth = Math.min(this.Ease((Date.now() - this.interractTimestamp) / 250) * this.GetWidth(), this.GetWidth())
+    //   GuiUtils.DrawRoundedRect(this.colours.accent, this.x + this.GetWidth() / 2 - barWidth / 2, this.y + this.height - 1, barWidth, 1, 1)
+    //  } else {
+    //    let barWidth = this.GetWidth() - Math.min(this.Ease((Date.now() - this.interractTimestamp) / 250) * this.GetWidth(), this.GetWidth())
+    //   GuiUtils.DrawRoundedRect(this.colours.accent, this.x + this.GetWidth() / 2 - barWidth / 2, this.y + this.height - 1, barWidth, 1, 1)
+    //   }
 
-    let font = this.mouseOver ? this.font_bold : this.font
-    font.drawString(this.ID, this.x + 10, this.y + this.height / 2 - font.getHeight(this.ID) / 2, this.colours.text)
+    const font = this.mouseOver ? this.font_bold : this.font
+    const textColor = this.selected ? this.colours.accent : this.colours.text
+    const centeredX = this.x + h / 2 - font.getWidth(this.ID) / 2
+    font.drawString(this.ID, centeredX, this.y + this.height / 2 - font.getHeight(this.ID) / 2, textColor)
   }
 
   CheckMouseOver(MouseX, MouseY) {
     this.mouseOver = MouseX > this.x && MouseX < this.x + this.GetWidth() && MouseY > this.y && MouseY < this.y + this.height
   }
 
-  Click() {
-    if (this.mouseOver) {
+  Click(btn) {
+    const textActualWidth = this.font.getWidth(this.ID)
+    const textActualHeight = this.font.getHeight(this.ID)
+
+    const textDrawX = this.x + this.width / 2 - textActualWidth / 2
+    const textDrawY = this.y + this.height / 2 - textActualHeight / 2
+
+    if (this.currentMouseX >= textDrawX && this.currentMouseX <= textDrawX + textActualWidth && this.currentMouseY >= textDrawY && this.currentMouseY <= textDrawY + textActualHeight && btn === 0) {
+      this.interractTimestamp = Date.now()
       this.onClick()
     }
   }
@@ -56,7 +68,9 @@ global.export.CategoryTitle = class {
   GetWidth() {
     return this.font.getWidth(this.ID) + 20
   }
-
+  GetHeight() {
+    return this.font.getHeight(this.ID) + 1
+  }
   GetID() {
     return this.ID
   }

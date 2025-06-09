@@ -93,17 +93,17 @@ global.export.NotificationHandler = notificationHandler
 class ICBAToFixMyObfuscato {
   constructor() {
     this.defaultTheme = {
-      name: "Default",
-      author: "Farlow",
+      name: "Classic",
+      author: "Zurviq",
       colours: {
-        panel: -15526631,
-        box: -15724013,
-        background: -15987185,
-        selection: -14736599,
-        logo: 15073261,
+        panel: 3223857,
+        box: 2302755,
+        background: 2302755,
+        selection: 986895,
+        logo: 16379097,
         text: -1,
-        accent: 4382965,
-        buttonBackground: -15066080,
+        accent: 7226282,
+        buttonBackground: 986895,
       },
     }
     this.theme = JSON.parse(FileLib.read("RdbtConfigV4", "theme.json"))

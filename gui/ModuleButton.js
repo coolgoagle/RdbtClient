@@ -27,9 +27,11 @@ global.export.ModuleButton = class {
     this.interractTimestamp = 0
 
     this.onClick = onClick
-    this.onRightClick = onRightClick || (() => {
-      ChatLib.command(`togglemodule ${this.ID}`, true)
-    })
+    this.onRightClick =
+      onRightClick ||
+      (() => {
+        ChatLib.command(`togglemodule ${this.ID}`, true)
+      })
   }
 
   Draw(x, y, w, MouseX, MouseY) {
@@ -52,7 +54,8 @@ global.export.ModuleButton = class {
     this.CheckMouseOver(MouseX, MouseY)
     let font = this.mouseOver ? this.font_bold : this.font
 
-    font.drawString(this.ID, this.x + this.width / 2 - font.getWidth(this.ID) / 2, this.y + this.GetHeight() / 2 - font.getHeight(this.ID) / 2, this.colours.text)
+    const color = this.selected ? this.colours.accent : this.colours.text
+    font.drawString(this.ID, this.x + this.width / 2 - font.getWidth(this.ID) / 2, this.y + this.GetHeight() / 2 - font.getHeight(this.ID) / 2, color)
 
     let h = this.GetHeight() - 5
 
@@ -75,11 +78,13 @@ global.export.ModuleButton = class {
 
   Click(btn) {
     if (this.mouseOver) {
-      if (btn === 0 && !this.selected) { // Left click
+      if (btn === 0 && !this.selected) {
+        // Left click
         this.interractTimestamp = Date.now()
         this.onClick()
         this.selected = true
-      } else if (btn === 1) { // Right click
+      } else if (btn === 1) {
+        // Right click
         this.onRightClick()
       }
     }

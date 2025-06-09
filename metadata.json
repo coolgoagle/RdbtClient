@@ -1,8 +1,8 @@
 {
   "name": "Rdbt Client",
-  "creator": "h",
-  "description": "Skidded client made by AI.",
-  "version": "4.2.0",
+  "creator": "rdbt",
+  "description": "github.com/RdbtClient/RdbtClient",
+  "version": "4.3.0",
   "entry": "loader.js",
   "requires": ["Bloomcore", "FontLib", "RenderLib", "WebSocket", "requestV2", "ClientSideChat"]
 }

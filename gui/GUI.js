@@ -233,18 +233,19 @@ const GUI = () => {
       }
 
       this.button.selected = this.selected
-      this.button.Draw(x, y, GuiConfig.main.height - GuiConfig.panel.height, MouseX, MouseY)
+      const categoryColumnWidth = GuiConfig.panel.x - GuiConfig.main.x
+      this.button.Draw(x, y, categoryColumnWidth, MouseX, MouseY)
 
       // Draw modules
       if (this.selected) {
         let o = 0
         this.modules.forEach((module, i) => {
-          module.Draw(GuiConfig.main.x, GuiConfig.panel.y + 30 + o, MouseX, MouseY)
+          module.Draw(GuiConfig.main.x, GuiConfig.panel.y + 150 + o, MouseX, MouseY)
           o += 20
         })
 
         if (!this.modules[0]) {
-          font_17.drawString("Wtfrick empty category", GuiConfig.configbox.x + 10, GuiConfig.configbox.y + 10, GuiConfig.colours.text) // wish someone told me this was an issue sooner..
+          font_17.drawString("Nothing here yet ;)", GuiConfig.configbox.x + 10, GuiConfig.configbox.y + 10, GuiConfig.colours.text) // wish someone told me this was an issue sooner..
         }
       }
     }
@@ -345,7 +346,7 @@ const GUI = () => {
       }
 
       if (this.selected) {
-        font_17.drawString(this.name, GuiConfig.configbox.x + 5, GuiConfig.configbox.y + 3, GuiConfig.colours.text)
+        font_17.drawString(this.name, GuiConfig.configbox.x + 5, GuiConfig.configbox.y + 3, GuiConfig.colours.accent)
 
         if (!safe_modules.Modules[this.name]) {
           font_19.drawString(
@@ -454,8 +455,8 @@ const GUI = () => {
     // Update scale and positions
 
     // Main
-    GuiConfig.main.height = ScreenHeight
-    GuiConfig.main.width = ScreenWidth
+    GuiConfig.main.height = 400
+    GuiConfig.main.width = 700
 
     /* if (windowconfig.main.customPos){
             GuiConfig.main.x = ScreenWidth * windowconfig.main.x
@@ -593,14 +594,14 @@ const GUI = () => {
   })
 
   const DrawCategories = (MouseX, MouseY) => {
-    const x = GuiConfig.panel.x + 10
-    const h = GuiConfig.main.height - GuiConfig.panel.height
-    const y = GuiConfig.main.y
+    const categoryColumnStartX = GuiConfig.main.x
 
-    let w = 0
-    categories.forEach((category, i) => {
-      category.Draw(x + w, y, MouseX, MouseY)
-      w += category.button.GetWidth() + 10
+    const initialY = GuiConfig.main.y - 10 // Y for the first category
+
+    let offsetY = 0
+    categories.forEach(category => {
+      category.Draw(categoryColumnStartX, initialY + offsetY, MouseX, MouseY)
+      offsetY += category.button.GetHeight() + 7
     })
   }
 
@@ -709,11 +710,11 @@ const GUI = () => {
   }).setDelay(120)
 
   let userInfo = {
-    channel: "Sigma",
-    version: "4.2.1",
+    channel: "RDBT Client V4.3.0",
+    version: "Very good client",
     username: Player.getName(),
     avatar: {
-      image: logo,
+      // image: logo,
       type: "fallback",
     },
   }
@@ -740,8 +741,8 @@ const GUI = () => {
 
     StencilUtils.UninitStencilBuffer()
 
-    font_17.drawString(`${userInfo.username}`, x + 34, y + 5, GuiConfig.colours.text)
-    font_15.drawString(`${userInfo.channel}`, x + 34, y + 15, GuiConfig.colours.text)
+    font_17.drawString(`${userInfo.username}`, x + 475, y - 347, GuiConfig.colours.text)
+    font_15.drawString(`${userInfo.channel}`, x + 475, y - 337, GuiConfig.colours.text)
   }
 
   const DrawGui = (MouseX, MouseY) => {
@@ -767,25 +768,22 @@ const GUI = () => {
     }
 
     // Draw background rect
-    GuiUtils.DropShadow(20, GuiConfig.main.x, GuiConfig.main.y, GuiConfig.main.width, GuiConfig.main.height, 1, GuiConfig.main.borderRadius + 3)
-    GuiUtils.DrawRoundedRect(GuiConfig.colours.background, GuiConfig.main.x, GuiConfig.main.y, GuiConfig.main.width, GuiConfig.main.height, 0)
+    GuiUtils.DropShadow(20, GuiConfig.main.x, GuiConfig.main.y, GuiConfig.main.width, GuiConfig.main.height, 1, GuiConfig.main.borderRadius) // shadow around outside
+    GuiUtils.DrawRoundedRect(GuiConfig.colours.background, GuiConfig.main.x, GuiConfig.main.y, GuiConfig.main.width, GuiConfig.main.height, GuiConfig.main.borderRadius) // main background
 
     // Draw Panel
-    GuiUtils.DrawRoundedRect(GuiConfig.colours.panel, GuiConfig.panel.x, GuiConfig.panel.y, GuiConfig.panel.width - 10, GuiConfig.panel.height, GuiConfig.panel.borderRadius)
-    GuiUtils.DrawRoundedRect(GuiConfig.colours.panel, GuiConfig.panel.x, GuiConfig.panel.y, GuiConfig.panel.width, GuiConfig.panel.height - 10, GuiConfig.panel.borderRadius)
-    GuiUtils.DrawRoundedRect(GuiConfig.colours.panel, GuiConfig.panel.x + GuiConfig.panel.width - 20, GuiConfig.panel.y + GuiConfig.panel.height - 20, 20, 20, GuiConfig.main.borderRadius)
+    // GuiUtils.DrawRoundedRect(GuiConfig.colours.panel, GuiConfig.panel.x, GuiConfig.panel.y, GuiConfig.panel.width - 10, GuiConfig.panel.height, GuiConfig.panel.borderRadius)
+    // GuiUtils.DrawRoundedRect(GuiConfig.colours.panel, GuiConfig.panel.x, GuiConfig.panel.y, GuiConfig.panel.width, GuiConfig.panel.height - 10, GuiConfig.panel.borderRadius)
+    // GuiUtils.DrawRoundedRect(GuiConfig.colours.panel, GuiConfig.panel.x + GuiConfig.panel.width - 20, GuiConfig.panel.y + GuiConfig.panel.height - 20, 20, 20, GuiConfig.main.borderRadius) // GuiUtils.DrawRoundedRect(GuiConfig.colours.panel, GuiConfig.panel.x + GuiConfig.panel.width - 10, GuiConfig.panel.y, 10, 10, 0) // "Un-round" corners touching flat face of main  // TOP RIGHT // GuiUtils.DrawRoundedRect(GuiConfig.colours.panel, GuiConfig.panel.x, GuiConfig.panel.y + GuiConfig.panel.height - 10, 10, 10, 0) // ^ // BOTTOM LEFT // Draw Settings Panel
 
-    GuiUtils.DrawRoundedRect(GuiConfig.colours.panel, GuiConfig.panel.x + GuiConfig.panel.width - 10, GuiConfig.panel.y, 10, 10, 0) // "Un-round" corners touching flat face of main  // TOP RIGHT
-    GuiUtils.DrawRoundedRect(GuiConfig.colours.panel, GuiConfig.panel.x, GuiConfig.panel.y + GuiConfig.panel.height - 10, 10, 10, 0) // ^ // BOTTOM LEFT
+    GuiUtils.DrawRoundedRect(GuiConfig.colours.panel, GuiConfig.configbox.x - 135, GuiConfig.configbox.y, GuiConfig.configbox.width - 190, GuiConfig.configbox.height, GuiConfig.main.borderRadius)
 
-    // Draw Settings Panel
-    GuiUtils.DrawRoundedRect(GuiConfig.colours.box, GuiConfig.configbox.x, GuiConfig.configbox.y, GuiConfig.configbox.width, GuiConfig.configbox.height, 7)
+    // Button box
+    GuiUtils.DrawRoundedRect(GuiConfig.colours.panel, GuiConfig.globalbox.x, GuiConfig.globalbox.y, GuiConfig.globalbox.width, GuiConfig.globalbox.height, GuiConfig.main.borderRadius) // Draw Global Box
 
-    // Draw Global Box
-    GuiUtils.DrawRoundedRect(GuiConfig.colours.box, GuiConfig.globalbox.x, GuiConfig.globalbox.y, GuiConfig.globalbox.width, GuiConfig.globalbox.height, 7)
-    font_17.drawString("Global Settings", GuiConfig.globalbox.x + GuiConfig.globalbox.width / 2 - font_17.getWidth("Global Settings") / 2, GuiConfig.globalbox.y + 3, GuiConfig.colours.text)
+    GuiUtils.DrawRoundedRect(GuiConfig.colours.panel, GuiConfig.globalbox.x, GuiConfig.globalbox.y - 38, GuiConfig.globalbox.width, GuiConfig.globalbox.height - 315, GuiConfig.main.borderRadius)
+    font_17.drawString("Global Settings", GuiConfig.globalbox.x + GuiConfig.globalbox.width / 2 - font_17.getWidth("Global Settings") / 2, GuiConfig.globalbox.y + 3, GuiConfig.colours.text) // Draw Polar Legends
 
-    // Draw Rdbt Legends
     let c = GuiConfig.colours.logo
 
     let r, g, b
@@ -795,28 +793,21 @@ const GUI = () => {
 
     Renderer.colorize(r, g, b)
 
-    logo.draw(GuiConfig.main.x + 15, GuiConfig.main.y + 10, 30, 30)
+    // logo.draw(GuiConfig.main.x + 15, GuiConfig.main.y + 10, 30, 30)
+    font_bold.drawString("RDBT V4", GuiConfig.main.x + 40, GuiConfig.main.y + 15, GuiConfig.colours.accent)
+    //font_17.drawString(userInfo.version, GuiConfig.main.x + 30, GuiConfig.main.y + 11 + font_bold.getHeight("P"), GuiConfig.colours.text) // Seperator bar // here sep
 
-    font_bold.drawString("Rdbt", GuiConfig.main.x + 50, GuiConfig.main.y + 11, GuiConfig.colours.logo)
-    font_17.drawString(userInfo.version, GuiConfig.main.x + 50, GuiConfig.main.y + 11 + font_bold.getHeight("P"), GuiConfig.colours.logo)
-
-    // Seperator bar
     const BarWidth = GuiConfig.main.width - GuiConfig.panel.width
-    GuiUtils.DrawRoundedRect(GuiConfig.colours.selection, GuiConfig.main.x + 10, GuiConfig.main.y + GuiConfig.main.height - 50, BarWidth - 20, 1, 0)
+    GuiUtils.DrawRoundedRect(GuiConfig.colours.selection, GuiConfig.main.x + 20, GuiConfig.main.y + GuiConfig.main.height - 220, BarWidth - 20, 1, 0)
 
     GuiUtils.DrawRoundedRect(GuiConfig.colours.selection, GuiConfig.globalbox.x + 10, GuiConfig.globalbox.y + font_17.getHeight("P") + 6, GuiConfig.globalbox.width - 20, 1, 0)
 
-    DrawUserInfo(GuiConfig.main.x + 10, GuiConfig.main.y + GuiConfig.main.height - 40, MouseX, MouseY)
+    DrawUserInfo(GuiConfig.main.x + 10, GuiConfig.main.y + GuiConfig.main.height - 40, MouseX, MouseY) // Draw Image buttons //  theme_button.Draw(GuiConfig.main.x + 10, GuiConfig.main.y + GuiConfig.main.height - 84, 24, MouseX, MouseY)
 
-    // Draw Image buttons
+    directory_button.Draw(GuiConfig.main.x + 570 + (BarWidth - 20) / 2, GuiConfig.main.y - 305 + GuiConfig.main.height - 84, 24, MouseX, MouseY)
+    move_button.Draw(GuiConfig.main.x + 600 + (BarWidth - 20) / 2, GuiConfig.main.y - 305 + GuiConfig.main.height - 84, 24, MouseX, MouseY)
 
-    theme_button.Draw(GuiConfig.main.x + 10, GuiConfig.main.y + GuiConfig.main.height - 84, 24, MouseX, MouseY)
-    directory_button.Draw(GuiConfig.main.x - 2 + (BarWidth - 20) / 2, GuiConfig.main.y + GuiConfig.main.height - 84, 24, MouseX, MouseY)
-    move_button.Draw(GuiConfig.main.x + BarWidth - 34, GuiConfig.main.y + GuiConfig.main.height - 84, 24, MouseX, MouseY)
-
-    let dist = (GuiConfig.panel.y - GuiConfig.main.y - 8) / 2
-    exit_button.Draw(GuiConfig.main.x + GuiConfig.main.width - dist - 8, GuiConfig.main.y + dist, 8, MouseX, MouseY)
-
+    let dist = (GuiConfig.panel.y - GuiConfig.main.y - 8) / 2 // exit_button.Draw(GuiConfig.main.x + GuiConfig.main.width - dist - 8, GuiConfig.main.y + dist, 8, MouseX, MouseY)
     // Fuck my life
     DrawCategories(MouseX, MouseY)
 
@@ -856,10 +847,10 @@ const GUI = () => {
   let CategoryTypes = ["MINING", "MISC", "RENDER", "EXTRAS"]
 
   let CategoryNames = {
-    MINING: "MINING",
-    MISC: "MISCELLANEOUS",
-    RENDER: "RENDER",
-    EXTRAS: "EXTRAS",
+    MINING: "Mining",
+    MISC: "Misc",
+    RENDER: "World",
+    EXTRAS: "Other",
   }
 
   // I don't know what the fuck is going on here
