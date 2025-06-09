@@ -24,7 +24,7 @@ class AutoReconnect {
       CAMP: "warp camp",
 
       CH: "warp ch",
-      NUCLEUS: "is",
+      NUCLEUS: "warp nucleus",
     }
 
     // Converts SB location to this.LOCATIONS
@@ -36,7 +36,7 @@ class AutoReconnect {
       "The Forge": this.LOCATIONS.FORGE,
 
       "Crystal Hollows": this.LOCATIONS.CH,
-      "Crystal Nucleus": this.LOCATIONS.CH,
+      "Crystal Nucleus": this.LOCATIONS.NUCLEUS,
 
       "Dwarven Base Camp": this.LOCATIONS.CAMP,
     }
