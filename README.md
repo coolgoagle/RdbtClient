@@ -34,7 +34,11 @@ Macro keybinds are set inside the vanilla keybinds settings in minecraft.
 
 ## Showcase
 
-Scatha:
+Commission:
+
+https://github.com/user-attachments/assets/1dd72f40-d357-4131-b2ba-14891d604ace
+
+Scatha (VIP ONLY):
 
 https://github.com/user-attachments/assets/0ee78a77-73bb-4bb8-8a45-67a050796ca4
 
