@@ -1,6 +1,6 @@
 import Skyblock from "BloomCore/Skyblock"
 let { SettingSlider, SettingToggle, ConfigModuleClass, getKeyBind, ModuleManager } = global.settingSelection
-let { ChatUtils, NumberUtils, MathUtils, TimeHelper, Rotations, ItemUtils, MovementHelper, MiningUtils, GuiInventory, SmartFailsafe } = global.export
+let { ChatUtils, NumberUtils, MathUtils, TimeHelper, Rotations, ItemUtils, MovementHelper, MiningUtils, GuiInventory, SmartFailsafe, InventoryUtils } = global.export
 let { S08PacketPlayerPosLook, Vec3, RenderUtils, Vector, RdbtPathFinder, Utils, S2DPacketOpenWindow, S30PacketWindowItems, overlayManager, MouseUtils, mc, registerEventSB, MiningBot } = global.export
 global.modules.push(new ConfigModuleClass("Commission Macro", "Mining", [new SettingSlider("Weapon Slot (Goblin)", 1, 1, 9), new SettingToggle("Pigeonless", true)], ["Does Dwarven Mines commissions without an etherwarp item"]))
 class commissionMacro {
@@ -637,7 +637,7 @@ class commissionMacro {
           if (this.action === this.MacroActions.CHECKINGPICKAXE) {
             let isIceWalkerWeapon = this.drill.slot === this.pickaxe.slot
             if (this.checkPickaxe(isIceWalkerWeapon)) {
-              Client.currentGui.close()
+              InventoryUtils.closeInv()
               return
             } else {
               this.stopMacroWithWarning("Something went wrong somehow report this!")
@@ -696,7 +696,7 @@ class commissionMacro {
                   }
                 })
               if (!found) {
-                Client.currentGui.close()
+                InventoryUtils.closeInv()
                 this.state = this.MacroStates.WAITING
                 this.sellingToNpc = false
 
@@ -920,7 +920,7 @@ class commissionMacro {
       this.route = this.newCommission.data.Data.splitRoute
       this.claimCommission = false
       this.walkTimer.reset()
-      Client.currentGui.close()
+      InventoryUtils.closeInv()
       ChatUtils.sendModMessage("Current Commission: " + this.newCommission.data.Name)
       if (!this.newCommission.isSlayer) this.scanLocation = true
       if (!this.newCommission.data.Data.fromForge && this.pigeonless) {
@@ -981,7 +981,7 @@ class commissionMacro {
         this.stopMacro()
         return
       }
-      Player.setHeldItemIndex(this.drill.slot)
+      Player.setHeldItemIndex(this.aspectOfTheVoid.slot)
       this.warpForge()
       if (!drills.blueCheese) this.blueCheeseSlot = this.drill
       if (!this.royalpigeon) this.royalpigeon = this.drill // Otherwise code becomes even worse

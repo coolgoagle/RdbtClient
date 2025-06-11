@@ -1,5 +1,5 @@
 import Skyblock from "BloomCore/Skyblock"
-let { S2DPacketOpenWindow, ChatUtils, Blocks, TimeHelper, mcMobs, MathUtils, ItemObject, S30PacketWindowItems, Utils } = global.export
+let { S2DPacketOpenWindow, ChatUtils, Blocks, TimeHelper, mcMobs, MathUtils, ItemObject, S30PacketWindowItems, Utils, InventoryUtils } = global.export
 class miningUtils {
   constructor() {
     this.MCBlocks = {
@@ -171,7 +171,7 @@ class miningUtils {
       }
       if (this.menuState === 5) {
         Client.scheduleTask(20, () => {
-          Client.currentGui.close()
+          InventoryUtils.closeInv()
         })
         Client.scheduleTask(40, () => {
           this.triggerReFuelDone(true)
@@ -246,7 +246,7 @@ class miningUtils {
     if (this.MiningSpeed < 200) {
       ChatUtils.sendModMessage("Your mining speed was too low: &e" + this.MiningSpeed.toString())
       Client.scheduleTask(0, () => {
-        Client.currentGui?.close()
+        InventoryUtils.closeInv()
       })
       return -1
     }
@@ -255,7 +255,7 @@ class miningUtils {
       ChatUtils.sendModMessage("Your mining speed is &e" + this.MiningSpeed.toString())
       this.InfoState = 0
       Client.scheduleTask(0, () => {
-        Client.currentGui?.close()
+        InventoryUtils.closeInv()
       })
       return this.MiningSpeed
     }
@@ -263,7 +263,7 @@ class miningUtils {
     if (this.MiningSpeed === 0) {
       ChatUtils.sendModMessage("Unable to fetch your mining speed, please try again!")
       Client.scheduleTask(0, () => {
-        Client.currentGui?.close()
+        InventoryUtils.closeInv()
       })
       return -1
     }
@@ -279,19 +279,19 @@ class miningUtils {
     if (this.MiningSpeed < 200) {
       ChatUtils.sendModMessage("Your mining speed was too low: &e" + this.MiningSpeed.toString())
       Client.scheduleTask(0, () => {
-        Client.currentGui?.close()
+        InventoryUtils.closeInv()
       })
       return -1
     }
     if (Timer.hasReached(3000)) {
       ChatUtils.sendModMessage("Unable to fetch your mining speed, please try again!")
       Client.scheduleTask(0, () => {
-        Client.currentGui?.close()
+        InventoryUtils.closeInv()
       })
       return -1
     }
     Client.scheduleTask(0, () => {
-      Client.currentGui?.close()
+      InventoryUtils.closeInv()
     })
     this.InfoState = 0
     this.MiningSpeed += this.getBetterTogetherSpeed()
@@ -352,6 +352,9 @@ class miningUtils {
       Speed *= 3.5
     }
 
+    // Too low speed for ping gliding
+    if (MiningSpeed < 2000) return this.returnSpeed(100, MiningOfset)
+
     // Define block mining times
     const blockData = {
       Prismarine: { hardness: 800 }, // Prismarine Mithril
@@ -366,22 +369,30 @@ class miningUtils {
         4: { hardness: 2000 }, // Titanium
       },
       "Stained Glass Pane": {
-        1: { hardness: 3000 }, // Orange Amber
-        10: { hardness: 3000 }, // Purple Amethyst
-        5: { hardness: 3000 }, // Green Jade
-        3: { hardness: 3000 }, // Blue Sapphire
-        4: { hardness: 3800 }, // Yellow Topaz
-        14: { hardness: 2300 }, // Red Ruby
-        2: { hardness: 4800 }, // Pink Jasper
+        1: { hardness: 3000 }, // Amber
+        10: { hardness: 3000 }, // Amethyst
+        5: { hardness: 3000 }, // Jade
+        3: { hardness: 3000 }, // Sapphire
+        4: { hardness: 3800 }, // Topaz
+        14: { hardness: 2300 }, // Ruby
+        2: { hardness: 4800 }, // Jasper
+        11: { hardness: 5200 }, // Aquamarine
+        15: { hardness: 5200 }, // Onyx
+        12: { hardness: 5200 }, // Citrine
+        13: { hardness: 5200 }, // Peridot
       },
       "Stained Glass": {
-        1: { hardness: 3000 }, // Orange Amber
-        10: { hardness: 3000 }, // Purple Amethyst
-        5: { hardness: 3000 }, // Green Jade
-        3: { hardness: 3000 }, // Blue Sapphire
-        4: { hardness: 3800 }, // Yellow Topaz
-        14: { hardness: 2300 }, // Red Ruby
-        2: { hardness: 4800 }, // Pink Jasper
+        1: { hardness: 3000 }, // Amber
+        10: { hardness: 3000 }, // Amethyst
+        5: { hardness: 3000 }, // Jade
+        3: { hardness: 3000 }, // Sapphire
+        4: { hardness: 3800 }, // Topaz
+        14: { hardness: 2300 }, // Ruby
+        2: { hardness: 4800 }, // Jasper
+        11: { hardness: 5200 }, // Aquamarine
+        15: { hardness: 5200 }, // Onyx
+        12: { hardness: 5200 }, // Citrine
+        13: { hardness: 5200 }, // Peridot
       },
       "Block of Gold": { hardness: 600 }, // gold
     }
@@ -631,7 +642,7 @@ class miningUtils {
     })
     this.greatExplorerActions = []
     this.gettingGreatExplorer = false
-    Client.currentGui.close()
+    InventoryUtils.closeInv()
   }
 
   startAbiphone() {

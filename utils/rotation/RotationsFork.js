@@ -109,6 +109,14 @@ class RotationsFork {
     }).setFilteredClass(net.minecraft.network.play.client.C03PacketPlayer.class)
   }
 
+  /**
+   * 
+   * @param {*} vector 
+   * @param {*} precision 
+   * @param {*} yawOnly 
+   * @param {*} pitch 
+   * @returns 
+   */
   rotateTo(vector, precision = 1.0, yawOnly = false, pitch = 0.0) {
     this.rotate = true
     let vec = Utils.convertToVector(vector)

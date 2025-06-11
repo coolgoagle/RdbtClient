@@ -53,6 +53,11 @@ let Files = [
     FileType: "file",
     Content: [],
   },
+  {
+    path: "webhook.json",
+    FileType: "file",
+    Content: [],
+  },
 
   // Routes
 

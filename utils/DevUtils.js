@@ -4,14 +4,14 @@ class devUtils {
     register("command", () => {
       let cords = Utils.playerCords().floor
       let text = "[" + cords[0] + "," + cords[1] + "," + cords[2] + "]"
-      ChatUtils.sendDevMessage(text + " to clipboard")
+      ChatUtils.sendModMessage(text + " to clipboard")
       ChatLib.command("ct copy " + text, true)
     }).setName("addwaypoint1")
 
     register("command", arg => {
       let cords = Utils.playerCords().floor
       let text = "new Point(" + cords[0] + "," + cords[1] + "," + cords[2] + "," + arg + ")"
-      ChatUtils.sendDevMessage(text + " to clipboard")
+      ChatUtils.sendModMessage(text + " to clipboard")
       ChatLib.command("ct copy " + text, true)
     }).setName("addwaypoint2")
 
@@ -42,10 +42,28 @@ class devUtils {
     register("command", () => {
       let entities = World.getAllEntities()
       entities.forEach(entity => {
-        ChatLib.chat(entity.getClassName() + ".")
-        ChatLib.chat(entity.getName() + ".")
+        ChatLib.chat(entity.getClassName() + " & " + entity.getName())
       })
     }).setName("debugentities")
+
+    register("command", () => {
+      let tabItems = TabList.getNames()
+
+      tabItems.forEach((item) => {
+        if (item.removeFormatting()?.startsWith(" Vanguard: ")) {
+          ChatUtils.sendDebugMessage("In Vanguard Mineshaft")
+          return
+        }
+      })
+    }).setName("testvangaurd")
+
+    register("command", () => {
+      let tabItems = TabList.getNames()
+
+      tabItems.forEach((item) => {
+        ChatUtils.sendModMessage(item.removeFormatting())
+        })
+    }).setName("dumptab")
 
     register("command", () => {
       Rotations.rotateTo(new Vec3(3.5, 132.5, 376.5))

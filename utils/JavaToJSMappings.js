@@ -60,6 +60,7 @@ global.export.C08PacketPlayerBlockPlacement = Java.type("net.minecraft.network.p
 global.export.S00PacketKeepAlive = Java.type("net.minecraft.network.play.server.S00PacketKeepAlive")
 global.export.S08PacketPlayerPosLook = Java.type("net.minecraft.network.play.server.S08PacketPlayerPosLook")
 global.export.S23PacketBlockChange = Java.type("net.minecraft.network.play.server.S23PacketBlockChange")
+global.export.S22PacketMultiBlockChange = Java.type("net.minecraft.network.play.server.S22PacketMultiBlockChange")
 global.export.S09PacketHeldItemChange = Java.type("net.minecraft.network.play.server.S09PacketHeldItemChange")
 global.export.S2APacketParticles = Java.type("net.minecraft.network.play.server.S2APacketParticles")
 global.export.S0FPacketSpawnMob = Java.type("net.minecraft.network.play.server.S0FPacketSpawnMob")

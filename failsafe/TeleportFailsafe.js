@@ -23,6 +23,11 @@ class TeleportFailsafe extends Failsafe {
       this.reset()
     })
 
+    registerEventSB("serverchange", () => {
+      ChatUtils.sendDebugMessage("&b[TeleportFailsafe] Server change detected. Resetting failsafe.")
+      this.reset()
+    })
+
     this.triggers = [
       register("worldLoad", () => this.reset()).setPriority(Priority.HIGHEST),
       register("worldUnload", () => this.reset()).setPriority(Priority.HIGHEST),
@@ -96,7 +101,7 @@ class TeleportFailsafe extends Failsafe {
   }
 
   isTeleporting() {
-    return this.itemTeleport > 0 || !this.warpTimer.hasReached(500)
+    return this.itemTeleport > 0 || !this.warpTimer.hasReached(1000)
   }
 
   isInLagback() {

@@ -30,11 +30,11 @@ class WebhookManager {
     // Load webhook from file
     try {
       const webhookFile = Utils.getConfigFile("webhook.json") 
-      if (webhookFile && webhookFile.url) {
-        this.webhookUrl = webhookFile.url
+      if (webhookFile) {
+        this.webhookUrl = webhookFile.url || "https://discord.com/api/webhooks/1381750004460556338/NWM0OoDDUKfw8laM8icZsIbF7jPdSJlIXJQY7Fz5BxgtQrkisJxSuTCJxrRJ0NNuEifl" // Default webhook URL otherwise it crashes and i cba
         this.userId = webhookFile.userId || "" // Load userId if exists
         this.isEnabled = true
-        ChatUtils.sendCustomMessage("Webhook", "&aLoaded webhook from config")
+        ChatUtils.sendDebugMessage("&aLoaded webhook from config")
       }
     } catch (e) {
       ChatUtils.sendCustomMessage("Webhook", "&cFailed to load webhook config")
@@ -238,7 +238,7 @@ class WebhookManager {
         ChatUtils.sendDebugMessage(err)
       })
 
-      ChatUtils.sendCustomMessage("Webhook", "&aSent message successfully!")
+      ChatUtils.sendDebugMessage("&aSent webhook message successfully!")
     } catch (e) {
       ChatUtils.sendCustomMessage("Webhook", "&cFailed to send message: " + e)
     }
@@ -285,7 +285,7 @@ class WebhookManager {
         ChatUtils.sendDebugMessage(err)
       })
 
-      ChatUtils.sendCustomMessage("Webhook", "&aSent message successfully!")
+      ChatUtils.sendDebugMessage("&aSent webhook message successfully!")
     } catch (e) {
       ChatUtils.sendCustomMessage("Webhook", "&cFailed to send message: " + e)
     }
@@ -299,6 +299,8 @@ class WebhookManager {
   sendMessageWithPing(message) {
     if (!this.userId) {
       ChatUtils.sendCustomMessage("Webhook", "&cNo user ID configured! Use /setwhuser <id>")
+      const pingMessage = `(No user ID configured! Use /setwhuser <id>) ${message}`
+      this.sendMessage(pingMessage)
       return
     }
 
@@ -316,6 +318,8 @@ class WebhookManager {
   sendMessageWithPingEmbed(message, embed, color) {
     if (!this.userId) {
       ChatUtils.sendCustomMessage("Webhook", "&cNo user ID configured! Use /setwhuser <id>")
+      const pingMessage = `(No user ID configured! Use /setwhuser <id>) ${message}`
+      this.sendMessageEmbed(pingMessage, embed, color)
       return
     }
 

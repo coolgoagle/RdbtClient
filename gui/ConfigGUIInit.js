@@ -9,7 +9,8 @@ let time = () => {
   else return "evening"
 }
 
-global.export.ChatUtils.sendModMessage(`Good ${time()}!`)
+global.export.WebhookManager.sendMessageEmbed(`Good ${time()}!`, "V4 Loaded.")
+global.export.ChatUtils.sendModMessage(`Good ${time()}! V4 loaded.`)
 /*
 const c = () => global.export.FailsafeManager.register((cb) => {
    ChatLib.chat("&cFailsafe Triggered!")

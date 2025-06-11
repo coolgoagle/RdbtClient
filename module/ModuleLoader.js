@@ -1,4 +1,4 @@
-let { ChatUtils } = global.export
+let { ChatUtils, InventoryUtils } = global.export
 let configFolder = "RdbtConfigV4"
 let keybindFile = "keybinds.json"
 
@@ -9,6 +9,7 @@ const KEYBIND_DESCRIPTIONS = {
   MINING_BOT: { description: "Mining Bot", location: "Rdbt Client v4 - Mining", shortname: "miningbot" },
   COMMISSION: { description: "Commission Macro", location: "Rdbt Client v4 - Mining", shortname: "comms" },
   SCATHA: { description: "Scatha Macro", location: "Rdbt Client v4 - Mining", shortname: "scatha" },
+  EXCAVATOR: { description: "Excavator Macro", location: "Rdbt Client v4 - Mining", shortname: "excavator" },
   HOPPITY: { description: "Hoppity Macro", location: "Rdbt Client v4 - Misc", shortname: "hoppity" },
   LOBBY_HOPPER: { description: "Lobby Hopper", location: "Rdbt Client v4 - Misc", shortname: "lobbyhop" },
   GHOST_BLOCKS: { description: "Ghost Blocks", location: "Rdbt Client v4 - Misc", shortname: "ghostblocks" },
@@ -17,6 +18,7 @@ const KEYBIND_DESCRIPTIONS = {
   FREECAM: { description: "Freecam", location: "Rdbt Client v4 - Render", shortname: "freecam" },
   CANCEL_RESPONSE: { description: "Cancel Response", location: "Rdbt Client v4 - Failsafes", keycode: Keyboard.KEY_F },
   FISHINGXPCHEESE: { description: "Fishing XP Cheese", location: "Rdbt Client v4 - Misc", shortname: "fish" },
+  //GLACITE: { description: "Glacite Commission Macro", location: "Rdbt Client v4 - Mining", shortname: "glacite" },
 }
 
 let Keys = Object.values(KEYBIND_DESCRIPTIONS)
@@ -171,7 +173,7 @@ register("command", moduleName => {
 
   if (key) {
     ToggleModule(key.description)
-    Client.currentGui.close()
+    InventoryUtils.closeInv()
   } else {
     global.export.ChatUtils.sendModMessage("§cModule not found. Use /togglemodule to see available modules.")
   }

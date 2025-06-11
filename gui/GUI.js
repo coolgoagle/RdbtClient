@@ -458,15 +458,13 @@ const GUI = () => {
     GuiConfig.main.height = 400
     GuiConfig.main.width = 700
 
-    /* if (windowconfig.main.customPos){
-            GuiConfig.main.x = ScreenWidth * windowconfig.main.x
-            GuiConfig.main.y = ScreenHeight * windowconfig.main.y
-        } else {
-            GuiConfig.main.x = (ScreenWidth / 2) - (GuiConfig.main.width / 2)
-            GuiConfig.main.y = (ScreenHeight / 2) - (GuiConfig.main.height / 2)
-        } */
-    GuiConfig.main.x = ScreenWidth / 2 - GuiConfig.main.width / 2
-    GuiConfig.main.y = ScreenHeight / 2 - GuiConfig.main.height / 2
+    if (windowconfig.main.customPos) {
+      GuiConfig.main.x = ScreenWidth * windowconfig.main.x
+      GuiConfig.main.y = ScreenHeight * windowconfig.main.y
+    } else {
+      GuiConfig.main.x = ScreenWidth / 2 - GuiConfig.main.width / 2
+      GuiConfig.main.y = ScreenHeight / 2 - GuiConfig.main.height / 2
+    }
 
     // Panel
     GuiConfig.panel.width = GuiConfig.main.width * 0.8
@@ -524,7 +522,7 @@ const GUI = () => {
     categories.forEach(c => {
       w += c.button.GetWidth() + 10
     })
-    DraggingWindow = mx > GuiConfig.panel.x + w && mx < GuiConfig.main.x + GuiConfig.main.width - 20 && my > GuiConfig.main.y && my < GuiConfig.main.y + (GuiConfig.panel.y - GuiConfig.main.y)
+    DraggingWindow = mx > GuiConfig.main.x - GuiConfig.main.width && mx < GuiConfig.main.x + GuiConfig.main.width && my > GuiConfig.main.y && my < GuiConfig.main.y + (GuiConfig.panel.y - GuiConfig.main.y)
     if (DraggingWindow) {
       LastX = mx
       LastY = my
@@ -782,7 +780,7 @@ const GUI = () => {
     GuiUtils.DrawRoundedRect(GuiConfig.colours.panel, GuiConfig.globalbox.x, GuiConfig.globalbox.y, GuiConfig.globalbox.width, GuiConfig.globalbox.height, GuiConfig.main.borderRadius) // Draw Global Box
 
     GuiUtils.DrawRoundedRect(GuiConfig.colours.panel, GuiConfig.globalbox.x, GuiConfig.globalbox.y - 38, GuiConfig.globalbox.width, GuiConfig.globalbox.height - 315, GuiConfig.main.borderRadius)
-    font_17.drawString("Global Settings", GuiConfig.globalbox.x + GuiConfig.globalbox.width / 2 - font_17.getWidth("Global Settings") / 2, GuiConfig.globalbox.y + 3, GuiConfig.colours.text) // Draw Polar Legends
+    font_17.drawString("Global Settings", GuiConfig.globalbox.x + GuiConfig.globalbox.width / 2 - font_17.getWidth("Global Settings") / 2, GuiConfig.globalbox.y + 3, GuiConfig.colours.text)
 
     let c = GuiConfig.colours.logo
 
@@ -802,8 +800,9 @@ const GUI = () => {
 
     GuiUtils.DrawRoundedRect(GuiConfig.colours.selection, GuiConfig.globalbox.x + 10, GuiConfig.globalbox.y + font_17.getHeight("P") + 6, GuiConfig.globalbox.width - 20, 1, 0)
 
-    DrawUserInfo(GuiConfig.main.x + 10, GuiConfig.main.y + GuiConfig.main.height - 40, MouseX, MouseY) // Draw Image buttons //  theme_button.Draw(GuiConfig.main.x + 10, GuiConfig.main.y + GuiConfig.main.height - 84, 24, MouseX, MouseY)
+    DrawUserInfo(GuiConfig.main.x + 10, GuiConfig.main.y + GuiConfig.main.height - 40, MouseX, MouseY) // Draw Image buttons //
 
+    theme_button.Draw(GuiConfig.main.x + 540 + (BarWidth - 20) / 2, GuiConfig.main.y - 305 + GuiConfig.main.height - 84, 24, MouseX, MouseY)
     directory_button.Draw(GuiConfig.main.x + 570 + (BarWidth - 20) / 2, GuiConfig.main.y - 305 + GuiConfig.main.height - 84, 24, MouseX, MouseY)
     move_button.Draw(GuiConfig.main.x + 600 + (BarWidth - 20) / 2, GuiConfig.main.y - 305 + GuiConfig.main.height - 84, 24, MouseX, MouseY)
 

@@ -1,4 +1,4 @@
-let { TimeHelper, MovementHelper, Rotations, ChatUtils, Utils, overlayManager } = global.export
+let { TimeHelper, MovementHelper, Rotations, ChatUtils, Utils, overlayManager, InventoryUtils } = global.export
 
 // TODO
 
@@ -107,7 +107,7 @@ class ResponseBot {
       inventory: () => {
         Client.scheduleTask(0, () => this.pause())
         Client.scheduleTask(Math.round(Utils.getRandomInRange(500, 700) / 50), () => Client.getMinecraft().func_147108_a(new net.minecraft.client.gui.inventory.GuiInventory(Player.getPlayer())))
-        Client.scheduleTask(Math.round(Utils.getRandomInRange(1600, 1750) / 50), () => Client.currentGui.close())
+        Client.scheduleTask(Math.round(Utils.getRandomInRange(1600, 1750) / 50), () => InventoryUtils.closeInv())
         Client.scheduleTask(Math.round(Utils.getRandomInRange(1800, 2000) / 50), () => this.unpause())
       },
 

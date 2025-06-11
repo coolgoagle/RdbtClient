@@ -10,10 +10,17 @@ class ItemUtilsClass {
     this.cooldown = new TimeHelper()
   }
 
+  /**
+   * Left clicks
+   */
   leftClick() {
     clickMouse.invoke(mc)
   }
 
+  /**
+   * Right clicks with a specified amount of ticks
+   * @param {*} ticks 
+   */
   rightClickZPH(ticks = 0) {
     if (ticks === 0) {
       rightClickMouse.invoke(mc)
@@ -24,6 +31,10 @@ class ItemUtilsClass {
     }
   }
 
+  /**
+   * Sends a right click packet
+   * @param {*} ticks 
+   */
   rightClickPacket(ticks = 0) {
     if (ticks === 0 && Player.getInventory().getStackInSlot(Player.getHeldItemIndex())) {
       Utils.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(Player.getHeldItemIndex()).getItemStack(), 0, 0, 0))
@@ -34,6 +45,11 @@ class ItemUtilsClass {
     }
   }
 
+
+  /**
+   * Right clicks
+   * @param {*} Tick 
+   */
   rightClick(Tick = 0) {
     Client.scheduleTask(Tick, () => {
       rightClickMouse.invoke(mc)

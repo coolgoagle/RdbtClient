@@ -297,7 +297,7 @@ class miningBot {
             let damage = this.getCurrentBlockDamage() ?? 0.0
             if (
               (this.ticksMined >= this.ticks) ||
-              (damage >= 8.0 && this.type != this.MACROTYPES.TUNNEL && this.type != this.MACROTYPES.COMMISSION && !this.gemstoneCommission) ||
+              (damage >= 8.0 && this.type != this.MACROTYPES.TUNNEL && this.type != this.MACROTYPES.COMMISSION && !this.gemstoneCommission && this.miningSpeed > 2000) ||
               [0, 7, 2, 3].indexOf(World.getBlockAt(this.current.pos).type.getID()) != -1 ||
               !visable ||
               this.timer.hasReached((this.tickSpeed.withoutmsb + 2) * 50)
@@ -1042,7 +1042,7 @@ class miningBot {
         if (this.TUNNELBLOCKS.obsolite) blocks.push(new MiningBlock(160, 10))
         if (this.TUNNELBLOCKS.tungsten) {
           blocks.push(new MiningBlock(82, 0))
-          blocks.push(new MiningBlock(4, 0))
+          blocks.push(new MiningBlock(97, 1))
         }
         if (this.TUNNELBLOCKS.umber) {
           blocks.push(new MiningBlock(172, 0))

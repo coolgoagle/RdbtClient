@@ -19,9 +19,9 @@ class rdbtPathFinder {
     this.disFlat = 1.5
     this.dis = 2.5
 
-    register("renderWorld", () => {
-      if (this.points.length != 0.0) RenderUtils.renderPathfindingLines(this.points)
-    })
+    //register("renderWorld", () => {
+    //  if (this.points.length != 0.0) RenderUtils.renderPathfindingLines(this.points)
+    //})
 
     register("tick", () => {
       if (!this.currentNode) return

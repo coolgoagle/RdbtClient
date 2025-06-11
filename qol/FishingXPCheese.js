@@ -331,7 +331,7 @@ class FishingXPCheese {
 
   closeInv() {
     ChatUtils.sendDebugMessage("Closing inventory...")
-    Client.currentGui.close()
+    InventoryUtils.closeInv()
     if (this.canOfWormsMode) {
       this.state = this.MACRO_STATES.FINDING_WORMS
     } else {
@@ -447,7 +447,7 @@ class FishingXPCheese {
 
     // Close the inventory and go back to finding worms
     Client.scheduleTask(10, () => {
-      Client.currentGui.close()
+      InventoryUtils.closeInv()
       this.state = this.MACRO_STATES.FINDING_WORMS
       this.actionTimer.reset()
     })

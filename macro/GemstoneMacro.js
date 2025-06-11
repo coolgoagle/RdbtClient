@@ -329,6 +329,12 @@ class GemstoneMacro {
       }
     })
 
+    registerEventSB("serverchange", () => {
+      if (this.Enabled) {
+        this.stopMacroWarning("Server shutdown!")
+      }
+    })
+
     register("worldUnload", () => {
       if (this.Enabled) this.stopMacroWarning()
     })
